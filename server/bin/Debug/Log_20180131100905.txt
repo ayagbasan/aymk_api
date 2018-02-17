@@ -1,0 +1,58 @@
+10:08:28 Market data OK. BTC-LTC
+10:08:28 Market data OK. Duration: 2,19 Thread Name: thread_BTC-LTC
+10:08:30 Market data OK. BTC-DOGE
+10:08:30 Market data OK. Duration: 1,64 Thread Name: thread_BTC-DOGE
+10:08:31 Market data OK. BTC-VTC
+10:08:31 Market data OK. Duration: 1,03 Thread Name: thread_BTC-VTC
+10:08:32 Market data OK. BTC-PPC
+10:08:32 Market data OK. Duration: 0,70 Thread Name: thread_BTC-PPC
+10:08:33 Market data OK. BTC-FTC
+10:08:33 Market data OK. Duration: 1,70 Thread Name: thread_BTC-FTC
+10:08:34 Market data OK. BTC-RDD
+10:08:34 Market data OK. Duration: 0,83 Thread Name: thread_BTC-RDD
+10:08:36 Market data OK. BTC-NXT
+10:08:36 Market data OK. Duration: 1,79 Thread Name: thread_BTC-NXT
+10:08:37 Market data OK. BTC-DASH
+10:08:37 Market data OK. Duration: 0,68 Thread Name: thread_BTC-DASH
+10:08:37 Market data OK. BTC-POT
+10:08:37 Market data OK. Duration: 0,67 Thread Name: thread_BTC-POT
+10:08:38 Market data OK. BTC-BLK
+10:08:38 Market data OK. Duration: 0,69 Thread Name: thread_BTC-BLK
+10:08:39 Market data OK. BTC-EMC2
+10:08:39 Market data OK. Duration: 0,75 Thread Name: thread_BTC-EMC2
+10:08:39 Market data OK. BTC-XMY
+10:08:39 Market data OK. Duration: 0,66 Thread Name: thread_BTC-XMY
+10:08:40 Market data OK. BTC-AUR
+10:08:40 Market data OK. Duration: 1,14 Thread Name: thread_BTC-AUR
+10:08:42 Market data OK. BTC-EFL
+10:08:42 Market data OK. Duration: 1,01 Thread Name: thread_BTC-EFL
+10:08:43 Market data OK. BTC-GLD
+10:08:43 Market data OK. Duration: 1,13 Thread Name: thread_BTC-GLD
+10:08:43 Market data OK. BTC-SLR
+10:08:43 Market data OK. Duration: 0,82 Thread Name: thread_BTC-SLR
+10:08:47 Market data OK. BTC-PTC
+10:08:47 Market data OK. Duration: 3,75 Thread Name: thread_BTC-PTC
+10:08:53 Market data OK. BTC-GRS
+10:08:53 Market data OK. Duration: 5,36 Thread Name: thread_BTC-GRS
+10:08:54 Market data OK. BTC-NLG
+10:08:54 Market data OK. Duration: 1,02 Thread Name: thread_BTC-NLG
+10:08:54 Market data OK. BTC-RBY
+10:08:54 Market data OK. Duration: 0,57 Thread Name: thread_BTC-RBY
+10:08:55 Market data OK. BTC-XWC
+10:08:55 Market data OK. Duration: 0,53 Thread Name: thread_BTC-XWC
+10:08:55 Market data OK. BTC-MONA
+10:08:55 Market data OK. Duration: 0,58 Thread Name: thread_BTC-MONA
+10:08:56 Market data OK. BTC-THC
+10:08:56 Market data OK. Duration: 0,83 Thread Name: thread_BTC-THC
+10:08:57 Market data OK. BTC-ENRG
+10:08:57 Market data OK. Duration: 0,50 Thread Name: thread_BTC-ENRG
+10:08:57 Market data OK. BTC-ERC
+10:08:57 Market data OK. Duration: 0,73 Thread Name: thread_BTC-ERC
+10:08:58 Market data OK. BTC-VRC
+10:08:58 Market data OK. Duration: 0,67 Thread Name: thread_BTC-VRC
+10:08:59 Market data OK. BTC-CURE
+10:08:59 Market data OK. Duration: 0,79 Thread Name: thread_BTC-CURE
+10:09:03 Market data OK. BTC-XMR
+10:09:03 Market data OK. Duration: 4,34 Thread Name: thread_BTC-XMR
+10:09:05 Market data OK. BTC-CLOAK
+10:09:05 Market data OK. Duration: 1,40 Thread Name: thread_BTC-CLOAK

@@ -1,0 +1,196 @@
+<template>
+    <div class="page"  data-name="exchangesForm">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Exchange Form</div>
+            </div>
+        </div>
+        <div class="page-content">
+
+            <div class="block-title"><b id="exchangeName"></b> Exchage Properties</div>
+            <form class="list" id="exchangeForm">
+
+                <input type="hidden" name="accountId" value="{{$root.user._id}}"/>
+                <input type="hidden" name="exchangeId" value="{{data.exchangeMarket._id}}"/>
+                <div class="list no-hairlines-md">
+                    <ul>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Caption</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="caption" id="caption" placeholder="Exchage caption"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Api Key</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="apiKey" id="apiKey" placeholder="Api key"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Secret Key</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="secretKey" id="secretKey" placeholder="Secret key"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Trading Enabled</div>
+                                    <div class="item-after">
+                                        <label class="toggle toggle-init">
+                                            <input type="checkbox" name="tradeEnabled" id="tradeEnabled" checked>
+                                            <span class="toggle-icon"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Active</div>
+                                    <div class="item-after">
+                                        <label class="toggle toggle-init">
+                                            <input type="checkbox" name="active" id="active" checked value="true">
+                                            <span class="toggle-icon"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block block-strong">
+                    <p class="row">
+                        <a href="#" class="col button button-fill button-raised color-red" @click="cancel()">Cancel</a>
+
+                        {{#if data.isNew}}
+                        <a href="#" class="col button button-fill button-raised color-green"
+                           @click="save(false)">Save </a>
+                        {{else}}
+                        <a href="#" class="col button button-fill button-raised color-green"
+                           @click="save(true)">Update </a>
+                        {{/if}}
+
+                    </p>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+
+<!--suppress JSAnnotator -->
+<script>
+
+
+
+    return {
+
+        // Component Data
+        data: function () {
+            return {
+                dummy: 1
+            };
+        },
+        // Component Methods
+        methods: {
+
+
+            cancel: () => {
+                app.router.back();
+            },
+            save: (isUpdate) => {
+
+                let formData = app.form.convertToData('#exchangeForm');
+
+                formData.active = $$('#active').is(':checked');
+                formData.tradeEnabled = $$('#tradeEnabled').is(':checked');
+
+
+                let requestData = formData;
+
+                let promise;
+                if (isUpdate ===false)
+                    promise = app.methods.aymkReq(config.apiMap.exchange.add, requestData, "POST", "Waiting please...");
+                else
+                    promise = app.methods.aymkReq(config.apiMap.exchange.update, requestData, "POST", "Waiting please...");
+
+                console.log(requestData);
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+
+                        config.toast("Exchange account saved successfully");
+                        app.methods.joinExchanges(response.data);
+
+                        app.router.back(
+                            "/exchanges/",
+                            {
+                                force: true,
+                                ignoreCache: true
+
+                            });
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+
+                }).catch((xhr, textStatus, errorThrown) => {
+
+                    app.dialog.alert("There is unknown error in " + config.apiMap.exchange.comment, config.errorCaption);
+                });
+
+
+            }
+
+
+        },
+        // Page Events
+        on: {
+
+            pageInit: function (e, page) {
+
+                if (this.data.isNew === true) {
+                    $$("#exchangeName").html(this.data.exchangeMarket.exchangeName);
+                } else {
+
+                    $$("#exchangeName").html(this.data.exchangeMarket.exc_exchangeName);
+                    $$("#caption").val(this.data.exchangeMarket.caption);
+                    $$("#apiKey").val(this.data.exchangeMarket.apiKey);
+                    $$("#secretKey").val(this.data.exchangeMarket.secretKey);
+                    $$('#tradeEnabled').prop('checked', this.data.exchangeMarket.tradeEnabled);
+                    $$('#active').prop('checked', this.data.exchangeMarket.active);
+
+                }
+
+            }
+
+        }
+    }
+</script>

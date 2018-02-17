@@ -1,0 +1,28 @@
+/* Your app styles here */
+.ios .tabbar-labels .tab-link:not(.tab-link-active) .icon-ios-fill {
+  display: none;
+}
+.ios .tabbar-labels .tab-link.tab-link-active .icon:not(.icon-ios-fill) {
+  display: none;
+}
+
+*
+{
+  font-family: 'Titillium Web', sans-serif;
+}
+
+
+.text-size-10{
+  font-size:10px;
+}
+
+.text-size-12 {
+  font-size: 12px;
+}
+
+.size-22 { font-size: 22px }
+.size-25 { font-size: 25px }
+.size-29 { font-size: 29px }
+.size-50 { font-size: 50px }
+
+ 

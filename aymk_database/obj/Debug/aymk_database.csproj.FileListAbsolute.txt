@@ -1,0 +1,16 @@
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\aymk_database.exe.config
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\aymk_database.exe
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\aymk_database.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\EntityFramework.dll
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\EntityFramework.SqlServer.dll
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\EntityFramework.xml
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\EntityFramework.SqlServer.xml
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\obj\Debug\aymk_database.csproj.CoreCompileInputs.cache
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\obj\Debug\aymk_database.exe
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\obj\Debug\aymk_database.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\obj\Debug\aymk_database.csprojResolveAssemblyReference.cache
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\aymk_library.exe
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\aymk_library.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\aymk_library.exe.config
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\Newtonsoft.Json.dll
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_database\bin\Debug\Newtonsoft.Json.xml

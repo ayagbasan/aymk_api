@@ -1,0 +1,16 @@
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.csproj.CoreCompileInputs.cache
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.csprojResolveAssemblyReference.cache
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\bin\Debug\ExchangeSharp_v2.dll
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\bin\Debug\ExchangeSharp_v2.pdb
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.dll
+C:\Users\ay1438\Desktop\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\bin\Debug\ExchangeSharp_v2.dll
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\bin\Debug\ExchangeSharp_v2.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.csprojResolveAssemblyReference.cache
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.csproj.CoreCompileInputs.cache
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.dll
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\obj\Debug\ExchangeSharp_v2.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\bin\Debug\MongoDB.Bson.dll
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\ExchangeSharp_v2\bin\Debug\MongoDB.Bson.xml

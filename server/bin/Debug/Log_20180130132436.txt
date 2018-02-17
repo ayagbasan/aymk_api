@@ -1,0 +1,8 @@
+13:24:05 Market data service starting
+13:24:07 Market data OK. Duration: 1,30
+13:24:11 Market data OK. Duration: 0,39
+13:24:16 Market data OK. Duration: 0,32
+13:24:21 Market data OK. Duration: 0,33
+13:24:26 Market data OK. Duration: 0,28
+13:24:31 Market data OK. Duration: 0,33
+13:24:36 Market data OK. Duration: 0,32

@@ -1,0 +1,249 @@
+<template>
+    <div class="page" data-name="alerts">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Alerts</div>
+                <div class="right">
+                    <a href="#" @click="addNewAlert()" class="link">
+                        <i class="fa fa-plus-circle"></i>
+                        <span class="ios-only">New </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+
+            <div class="block-title ">Alerts List </div>
+
+
+            <div class="list media-list" id="divAlerts">
+                <ul>
+                    {{#each $root.user.alerts}}
+                    <li class="swipeout">
+                        <div class="swipeout-content">
+                            <a href="#" class="item-link item-content" @click="detail('{{_id}}')">
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <div class="item-title">
+                                            {{#if active}}
+                                            <i class="fa fa-bell text-color-green"></i>
+                                            {{else}}
+                                            <i class="fa fa-bell-slash-o text-color-gray"></i>
+                                            {{/if}}
+                                            <span style="padding-left:8px">
+                                                {{market.code}}
+                                            </span>
+                                        </div>
+
+                                        <div class="item-after">
+                                            {{js 'moment(this.createdAt).format("HH:mm")'}}
+
+                                        </div>
+                                    </div>
+                                    <div style="margin-left:30px">
+                                        <div class="item-subtitle">{{market.Exchange.exchangeName}}</div>
+                                        <div class="item-text" style="font-size:13px">
+                                            Above: {{aboveValue}} Below: {{belowValue}}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swipeout-actions-right">
+                            {{#if active}}
+                            <a href="#" @click="changeStatus('{{_id}}',{{active}})" class="crudAlerts color-gray"> Pause </a>
+                            {{else}}
+                            <a href="#" @click="changeStatus('{{_id}}',{{active}})" class="crudAlerts color-green">Start </a>
+                            {{/if}}
+
+                            <a href="#" @click="delete('{{_id}}')" class="crudAlerts color-red">Delete</a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+
+<script>
+
+    var obj = {
+
+        data: function () {
+            return
+            {
+                dummy: null;
+            }
+        },
+        // Component Methods
+        methods: {
+
+            findById: (id) => {
+
+                var selectedItem;
+
+                for (var i in app.data.user.alerts) {
+                    if (app.data.user.alerts[i]._id === id) {
+                        selectedItem = app.data.user.alerts[i];
+                        break;
+                    }
+                }
+
+                return selectedItem;
+            },
+
+            addNewAlert: () => {
+                let options =
+                    {
+                        context:
+                        {
+                            data:
+                            {
+                                isNew: true,
+                                alert:
+                                {
+                                    active: false,
+                                    _id: 0
+                                }
+                            }
+                        }
+                    };
+
+                app.router.navigate("/alertsForm/", options);
+            },
+
+            delete: (id) => {
+
+                app.dialog.confirm("Are you sure ?", "Delete Alert", function () {
+
+                    let requestData = {
+                        accountId:app.data.user._id,
+                        alertId:id
+                    };
+                    const promise = app.methods.aymkReq(config.apiMap.alert.delete , requestData, "POST", "Deleting...");
+
+                    promise.then((response) => {
+
+                        if (response.isSuccess) {
+
+                            config.toast("Alert deleted");
+                            app.methods.joinAlerts(response.data);
+                            obj.methods.refreshPage();
+
+
+                        }
+                        else {
+                            app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                        }
+                    }).catch((xhr, textStatus, errorThrown) => {
+                        app.dialog.alert("There is unknown error in " + config.apiMap.alert.comment, config.errorCaption);
+                    });
+                });
+
+            },
+
+            changeStatus: (id, currentActive) => {
+
+                let requestData = {
+                    accountId:app.data.user._id,
+                    alertId:id,
+                    active: !currentActive
+                };
+                const promise = app.methods.aymkReq(config.apiMap.alert.changeStatus, requestData, "POST", "Waiting please...");
+
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+                        if (requestData.active === true)
+                            config.toast("Alert is started");
+                        else
+                            config.toast("Alert is paused");
+
+                        for (var i in app.data.user.alerts) {
+                            if (app.data.user.alerts[i]._id === id) {
+                                app.data.user.alerts[i].active = requestData.active;
+                                break;
+                            }
+                        }
+                        obj.methods.refreshPage();
+
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+
+                }).catch((xhr, textStatus, errorThrown) => {
+
+                    app.dialog.alert("There is unknown error in " + config.alertService.name, config.errorCaption);
+                });
+
+            },
+
+            detail: (id) => {
+
+                let selectedItem = obj.methods.findById(id);
+
+                let options =
+                    {
+                        context:
+                        {
+                            data:
+                            {
+                                isNew: false,
+                                alert: selectedItem
+                            }
+                        }
+                    };
+                app.router.navigate("/alertsForm/", options);
+
+
+            },
+
+            refreshPage: () => {
+
+                try {
+                    app.router.navigate("/alerts/", {
+                        reloadCurrent: true,
+                        ignoreCache: true,
+                    });
+                } catch (e) {
+                    config.toast("Page can not refresh. Go back and try again");
+                }
+            }
+
+
+        },
+
+        on: {
+
+            pageInit: function (e, page) {
+
+            },
+
+            pageBeforeIn: function (e, page) {
+
+                
+            }
+        }
+    }
+
+
+    return obj;
+
+
+</script>

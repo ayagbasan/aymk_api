@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AYMKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="surname" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="phoneNumber" Type="nvarchar(max)" />
+          <Property Name="alertEmail" Type="bit" />
+          <Property Name="alertNotification" Type="bit" />
+          <Property Name="alertSms" Type="bit" />
+          <Property Name="tradeEmail" Type="bit" />
+          <Property Name="tradeNotification" Type="bit" />
+          <Property Name="tradeSms" Type="bit" />
+          <Property Name="lastLogin" Type="datetime2" Precision="7" />
+          <Property Name="createdAt" Type="datetime2" Precision="7" />
+          <Property Name="deviceModel" Type="nvarchar(max)" />
+          <Property Name="deviceType" Type="nvarchar(max)" />
+          <Property Name="devicePrivateKey" Type="nvarchar(max)" />
+          <Property Name="devicePublicKey" Type="nvarchar(max)" />
+          <Property Name="devicePlayerId" Type="nvarchar(max)" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Alert">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountId" Type="int" Nullable="false" />
+          <Property Name="marketId" Type="int" Nullable="false" />
+          <Property Name="valueType" Type="int" Nullable="false" />
+          <Property Name="savedValue" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="belowValue" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="aboveValue" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="isPersistent" Type="bit" Nullable="false" />
+          <Property Name="alertComment" Type="nvarchar(max)" />
+          <Property Name="createdAt" Type="datetime2" Precision="7" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogError">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="controller" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="errorTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="errorContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="errorType" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogExchange">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="marketSplitterChar" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="webSiteUrl" Type="nvarchar(max)" />
+          <Property Name="createdAt" Type="datetime2" Precision="7" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="CatalogMarket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exchangeId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="firstCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="secondCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="logoUrl" Type="nvarchar(max)" />
+          <Property Name="createdAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="lastSell" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="lastBuy" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="volume" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="sellMin5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="sellMax5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="buyMin5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="buyMax5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="volume5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime2" Precision="7" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AYMK.dbo.Exchange' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Exchange">
+          <Key>
+            <PropertyRef Name="accountId" />
+            <PropertyRef Name="exchangeId" />
+            <PropertyRef Name="createdAt" />
+            <PropertyRef Name="active" />
+          </Key>
+          <Property Name="accountId" Type="int" Nullable="false" />
+          <Property Name="exchangeId" Type="int" Nullable="false" />
+          <Property Name="publicKey" Type="nvarchar(max)" />
+          <Property Name="privateKey" Type="nvarchar(max)" />
+          <Property Name="trading" Type="bit" />
+          <Property Name="createdAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime2" Precision="7" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountId" Type="int" Nullable="false" />
+          <Property Name="logType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="logContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="logDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountId" Type="int" />
+          <Property Name="notificationType" Type="nvarchar(max)" />
+          <Property Name="notificationTitle" Type="nvarchar(max)" />
+          <Property Name="notificationContent" Type="nvarchar(max)" />
+          <Property Name="notificationDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Alert_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Alert" Type="Self.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alert">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alert_CatalogMarket">
+          <End Role="CatalogMarket" Type="Self.CatalogMarket" Multiplicity="1" />
+          <End Role="Alert" Type="Self.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogMarket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alert">
+              <PropertyRef Name="marketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatalogMarket_CatalogMarket">
+          <End Role="CatalogExchange" Type="Self.CatalogExchange" Multiplicity="1" />
+          <End Role="CatalogMarket" Type="Self.CatalogMarket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogExchange">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CatalogMarket">
+              <PropertyRef Name="exchangeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exchange_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Exchange">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exchange_CatalogExchange">
+          <End Role="CatalogExchange" Type="Self.CatalogExchange" Multiplicity="1" />
+          <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogExchange">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Exchange">
+              <PropertyRef Name="exchangeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AYMKModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alert" EntityType="Self.Alert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogError" EntityType="Self.CatalogError" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogExchange" EntityType="Self.CatalogExchange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogMarket" EntityType="Self.CatalogMarket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exchange" EntityType="Self.Exchange" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Exchange].[accountId] AS [accountId], 
+    [Exchange].[exchangeId] AS [exchangeId], 
+    [Exchange].[publicKey] AS [publicKey], 
+    [Exchange].[privateKey] AS [privateKey], 
+    [Exchange].[trading] AS [trading], 
+    [Exchange].[createdAt] AS [createdAt], 
+    [Exchange].[updatedAt] AS [updatedAt], 
+    [Exchange].[active] AS [active]
+    FROM [dbo].[Exchange] AS [Exchange]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Alert_Account" Association="Self.FK_Alert_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Alert" EntitySet="Alert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alert_CatalogMarket" Association="Self.FK_Alert_CatalogMarket">
+            <End Role="CatalogMarket" EntitySet="CatalogMarket" />
+            <End Role="Alert" EntitySet="Alert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogMarket_CatalogMarket" Association="Self.FK_CatalogMarket_CatalogMarket">
+            <End Role="CatalogExchange" EntitySet="CatalogExchange" />
+            <End Role="CatalogMarket" EntitySet="CatalogMarket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exchange_Account" Association="Self.FK_Exchange_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Exchange" EntitySet="Exchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exchange_CatalogExchange" Association="Self.FK_Exchange_CatalogExchange">
+            <End Role="CatalogExchange" EntitySet="CatalogExchange" />
+            <End Role="Exchange" EntitySet="Exchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Account" Association="Self.FK_Log_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Account" Association="Self.FK_Notification_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AYMKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alert">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int32" Nullable="false" />
+          <Property Name="marketId" Type="Int32" Nullable="false" />
+          <Property Name="valueType" Type="Int32" Nullable="false" />
+          <Property Name="savedValue" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="belowValue" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="aboveValue" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="isPersistent" Type="Boolean" Nullable="false" />
+          <Property Name="alertComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdAt" Type="DateTime" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Precision="7" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CatalogMarket" Relationship="Self.FK_Alert_CatalogMarket" FromRole="Alert" ToRole="CatalogMarket" />
+          <NavigationProperty Name="Account" Relationship="AYMKModel.FK_Alert_Account" FromRole="Alert" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="CatalogError">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="errorTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="errorContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="errorType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogMarket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exchangeId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firstCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="secondCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="logoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="lastSell" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="lastBuy" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="volume" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="sellMin5" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="sellMax5" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="buyMin5" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="buyMax5" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="volume5" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="updatedAt" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Alert" Relationship="Self.FK_Alert_CatalogMarket" FromRole="CatalogMarket" ToRole="Alert" />
+          <NavigationProperty Name="CatalogExchange" Relationship="AYMKModel.FK_CatalogMarket_CatalogMarket" FromRole="CatalogMarket" ToRole="CatalogExchange" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int32" Nullable="false" />
+          <Property Name="logType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="logContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="logDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="AYMKModel.FK_Log_Account" FromRole="Log" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int32" />
+          <Property Name="notificationType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notificationTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notificationContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notificationDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="AYMKModel.FK_Notification_Account" FromRole="Notification" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Alert_CatalogMarket">
+          <End Role="CatalogMarket" Type="Self.CatalogMarket" Multiplicity="1" />
+          <End Role="Alert" Type="Self.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogMarket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alert">
+              <PropertyRef Name="marketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AYMKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alert" EntityType="Self.Alert" />
+          <EntitySet Name="CatalogError" EntityType="Self.CatalogError" />
+          <EntitySet Name="CatalogMarket" EntityType="Self.CatalogMarket" />
+          <EntitySet Name="Log" EntityType="Self.Log" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" />
+          <AssociationSet Name="FK_Alert_CatalogMarket" Association="Self.FK_Alert_CatalogMarket">
+            <End Role="CatalogMarket" EntitySet="CatalogMarket" />
+            <End Role="Alert" EntitySet="Alert" />
+          </AssociationSet>
+          <EntitySet Name="CatalogExchange" EntityType="AYMKModel.CatalogExchange" />
+          <EntitySet Name="Exchange" EntityType="AYMKModel.Exchange" />
+          <AssociationSet Name="FK_CatalogMarket_CatalogMarket" Association="AYMKModel.FK_CatalogMarket_CatalogMarket">
+            <End Role="CatalogExchange" EntitySet="CatalogExchange" />
+            <End Role="CatalogMarket" EntitySet="CatalogMarket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exchange_CatalogExchange" Association="AYMKModel.FK_Exchange_CatalogExchange">
+            <End Role="CatalogExchange" EntitySet="CatalogExchange" />
+            <End Role="Exchange" EntitySet="Exchange" />
+          </AssociationSet>
+          <EntitySet Name="Account" EntityType="AYMKModel.Account" />
+          <AssociationSet Name="FK_Alert_Account" Association="AYMKModel.FK_Alert_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Alert" EntitySet="Alert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exchange_Account" Association="AYMKModel.FK_Exchange_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Exchange" EntitySet="Exchange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Account" Association="AYMKModel.FK_Log_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Account" Association="AYMKModel.FK_Notification_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="CatalogExchange">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="marketSplitterChar" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="webSiteUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdAt" Type="DateTime" Precision="7" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="CatalogMarket" Relationship="AYMKModel.FK_CatalogMarket_CatalogMarket" FromRole="CatalogExchange" ToRole="CatalogMarket" />
+          <NavigationProperty Name="Exchange" Relationship="AYMKModel.FK_Exchange_CatalogExchange" FromRole="CatalogExchange" ToRole="Exchange" />
+        </EntityType>
+        <EntityType Name="Exchange">
+          <Key>
+            <PropertyRef Name="accountId" />
+            <PropertyRef Name="exchangeId" />
+            <PropertyRef Name="createdAt" />
+            <PropertyRef Name="active" />
+          </Key>
+          <Property Name="accountId" Type="Int32" Nullable="false" />
+          <Property Name="exchangeId" Type="Int32" Nullable="false" />
+          <Property Name="publicKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="privateKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="trading" Type="Boolean" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updatedAt" Type="DateTime" Precision="7" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CatalogExchange" Relationship="AYMKModel.FK_Exchange_CatalogExchange" FromRole="Exchange" ToRole="CatalogExchange" />
+          <NavigationProperty Name="Account" Relationship="AYMKModel.FK_Exchange_Account" FromRole="Exchange" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_CatalogMarket_CatalogMarket">
+          <End Type="AYMKModel.CatalogExchange" Role="CatalogExchange" Multiplicity="1" />
+          <End Type="AYMKModel.CatalogMarket" Role="CatalogMarket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogExchange">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CatalogMarket">
+              <PropertyRef Name="exchangeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exchange_CatalogExchange">
+          <End Type="AYMKModel.CatalogExchange" Role="CatalogExchange" Multiplicity="1" />
+          <End Type="AYMKModel.Exchange" Role="Exchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogExchange">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Exchange">
+              <PropertyRef Name="exchangeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="alertEmail" Type="Boolean" />
+          <Property Name="alertNotification" Type="Boolean" />
+          <Property Name="alertSms" Type="Boolean" />
+          <Property Name="tradeEmail" Type="Boolean" />
+          <Property Name="tradeNotification" Type="Boolean" />
+          <Property Name="tradeSms" Type="Boolean" />
+          <Property Name="lastLogin" Type="DateTime" Precision="7" />
+          <Property Name="createdAt" Type="DateTime" Precision="7" />
+          <Property Name="deviceModel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="deviceType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="devicePrivateKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="devicePublicKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="devicePlayerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="Alert" Relationship="AYMKModel.FK_Alert_Account" FromRole="Account" ToRole="Alert" />
+          <NavigationProperty Name="Exchange" Relationship="AYMKModel.FK_Exchange_Account" FromRole="Account" ToRole="Exchange" />
+          <NavigationProperty Name="Log" Relationship="AYMKModel.FK_Log_Account" FromRole="Account" ToRole="Log" />
+          <NavigationProperty Name="Notification" Relationship="AYMKModel.FK_Notification_Account" FromRole="Account" ToRole="Notification" />
+        </EntityType>
+        <Association Name="FK_Alert_Account">
+          <End Type="AYMKModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="AYMKModel.Alert" Role="Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alert">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exchange_Account">
+          <End Type="AYMKModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="AYMKModel.Exchange" Role="Exchange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Exchange">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Account">
+          <End Type="AYMKModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="AYMKModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Account">
+          <End Type="AYMKModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="AYMKModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="accountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AYMKModelStoreContainer" CdmEntityContainer="AYMKEntities">
+          <EntitySetMapping Name="Alert">
+            <EntityTypeMapping TypeName="AYMKModel.Alert">
+              <MappingFragment StoreEntitySet="Alert">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="marketId" ColumnName="marketId" />
+                <ScalarProperty Name="valueType" ColumnName="valueType" />
+                <ScalarProperty Name="savedValue" ColumnName="savedValue" />
+                <ScalarProperty Name="belowValue" ColumnName="belowValue" />
+                <ScalarProperty Name="aboveValue" ColumnName="aboveValue" />
+                <ScalarProperty Name="isPersistent" ColumnName="isPersistent" />
+                <ScalarProperty Name="alertComment" ColumnName="alertComment" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogError">
+            <EntityTypeMapping TypeName="AYMKModel.CatalogError">
+              <MappingFragment StoreEntitySet="CatalogError">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="errorTitle" ColumnName="errorTitle" />
+                <ScalarProperty Name="errorContent" ColumnName="errorContent" />
+                <ScalarProperty Name="errorType" ColumnName="errorType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogMarket">
+            <EntityTypeMapping TypeName="AYMKModel.CatalogMarket">
+              <MappingFragment StoreEntitySet="CatalogMarket">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="exchangeId" ColumnName="exchangeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="firstCode" ColumnName="firstCode" />
+                <ScalarProperty Name="secondCode" ColumnName="secondCode" />
+                <ScalarProperty Name="logoUrl" ColumnName="logoUrl" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="lastSell" ColumnName="lastSell" />
+                <ScalarProperty Name="lastBuy" ColumnName="lastBuy" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="sellMin5" ColumnName="sellMin5" />
+                <ScalarProperty Name="sellMax5" ColumnName="sellMax5" />
+                <ScalarProperty Name="buyMin5" ColumnName="buyMin5" />
+                <ScalarProperty Name="buyMax5" ColumnName="buyMax5" />
+                <ScalarProperty Name="volume5" ColumnName="volume5" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="AYMKModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="logType" ColumnName="logType" />
+                <ScalarProperty Name="logContent" ColumnName="logContent" />
+                <ScalarProperty Name="logDate" ColumnName="logDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification">
+            <EntityTypeMapping TypeName="AYMKModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="notificationType" ColumnName="notificationType" />
+                <ScalarProperty Name="notificationTitle" ColumnName="notificationTitle" />
+                <ScalarProperty Name="notificationContent" ColumnName="notificationContent" />
+                <ScalarProperty Name="notificationDate" ColumnName="notificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogExchange">
+            <EntityTypeMapping TypeName="AYMKModel.CatalogExchange">
+              <MappingFragment StoreEntitySet="CatalogExchange">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="webSiteUrl" ColumnName="webSiteUrl" />
+                <ScalarProperty Name="marketSplitterChar" ColumnName="marketSplitterChar" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exchange">
+            <EntityTypeMapping TypeName="AYMKModel.Exchange">
+              <MappingFragment StoreEntitySet="Exchange">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="trading" ColumnName="trading" />
+                <ScalarProperty Name="privateKey" ColumnName="privateKey" />
+                <ScalarProperty Name="publicKey" ColumnName="publicKey" />
+                <ScalarProperty Name="exchangeId" ColumnName="exchangeId" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="AYMKModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="devicePlayerId" ColumnName="devicePlayerId" />
+                <ScalarProperty Name="devicePublicKey" ColumnName="devicePublicKey" />
+                <ScalarProperty Name="devicePrivateKey" ColumnName="devicePrivateKey" />
+                <ScalarProperty Name="deviceType" ColumnName="deviceType" />
+                <ScalarProperty Name="deviceModel" ColumnName="deviceModel" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+                <ScalarProperty Name="tradeSms" ColumnName="tradeSms" />
+                <ScalarProperty Name="tradeNotification" ColumnName="tradeNotification" />
+                <ScalarProperty Name="tradeEmail" ColumnName="tradeEmail" />
+                <ScalarProperty Name="alertSms" ColumnName="alertSms" />
+                <ScalarProperty Name="alertNotification" ColumnName="alertNotification" />
+                <ScalarProperty Name="alertEmail" ColumnName="alertEmail" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

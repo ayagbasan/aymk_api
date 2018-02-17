@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AYMKModelStoreContainer" CdmEntityContainer="AYMKEntities">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="AYMKModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="alertEmail" ColumnName="alertEmail" />
+          <ScalarProperty Name="alertNotification" ColumnName="alertNotification" />
+          <ScalarProperty Name="alertSms" ColumnName="alertSms" />
+          <ScalarProperty Name="tradeEmail" ColumnName="tradeEmail" />
+          <ScalarProperty Name="tradeNotification" ColumnName="tradeNotification" />
+          <ScalarProperty Name="tradeSms" ColumnName="tradeSms" />
+          <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="deviceModel" ColumnName="deviceModel" />
+          <ScalarProperty Name="deviceType" ColumnName="deviceType" />
+          <ScalarProperty Name="devicePrivateKey" ColumnName="devicePrivateKey" />
+          <ScalarProperty Name="devicePublicKey" ColumnName="devicePublicKey" />
+          <ScalarProperty Name="devicePlayerId" ColumnName="devicePlayerId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatalogError">
+      <EntityTypeMapping TypeName="AYMKModel.CatalogError">
+        <MappingFragment StoreEntitySet="CatalogError">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="controller" ColumnName="controller" />
+          <ScalarProperty Name="errorTitle" ColumnName="errorTitle" />
+          <ScalarProperty Name="errorContent" ColumnName="errorContent" />
+          <ScalarProperty Name="errorType" ColumnName="errorType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatalogExchange">
+      <EntityTypeMapping TypeName="AYMKModel.CatalogExchange">
+        <MappingFragment StoreEntitySet="CatalogExchange">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="marketSplitterChar" ColumnName="marketSplitterChar" />
+          <ScalarProperty Name="webSiteUrl" ColumnName="webSiteUrl" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatalogMarket">
+      <EntityTypeMapping TypeName="AYMKModel.CatalogMarket">
+        <MappingFragment StoreEntitySet="CatalogMarket">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="exchangeId" ColumnName="exchangeId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="firstCode" ColumnName="firstCode" />
+          <ScalarProperty Name="secondCode" ColumnName="secondCode" />
+          <ScalarProperty Name="logoUrl" ColumnName="logoUrl" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="lastSell" ColumnName="lastSell" />
+          <ScalarProperty Name="lastBuy" ColumnName="lastBuy" />
+          <ScalarProperty Name="volume" ColumnName="volume" />
+          <ScalarProperty Name="sellMin5" ColumnName="sellMin5" />
+          <ScalarProperty Name="sellMax5" ColumnName="sellMax5" />
+          <ScalarProperty Name="buyMin5" ColumnName="buyMin5" />
+          <ScalarProperty Name="buyMax5" ColumnName="buyMax5" />
+          <ScalarProperty Name="volume5" ColumnName="volume5" />
+          <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="AYMKModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="logType" ColumnName="logType" />
+          <ScalarProperty Name="logContent" ColumnName="logContent" />
+          <ScalarProperty Name="logDate" ColumnName="logDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notification">
+      <EntityTypeMapping TypeName="AYMKModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="notificationType" ColumnName="notificationType" />
+          <ScalarProperty Name="notificationTitle" ColumnName="notificationTitle" />
+          <ScalarProperty Name="notificationContent" ColumnName="notificationContent" />
+          <ScalarProperty Name="notificationDate" ColumnName="notificationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Exchange" TypeName="AYMKModel.Exchange" StoreEntitySet="Exchange">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="id" ColumnName="accountId" />
+      </EndProperty>
+      <EndProperty Name="CatalogExchange">
+        <ScalarProperty Name="id" ColumnName="exchangeId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Alert">
+      <EntityTypeMapping TypeName="AYMKModel.Alert">
+        <MappingFragment StoreEntitySet="Alert">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="alertComment" ColumnName="alertComment" />
+          <ScalarProperty Name="isPersistent" ColumnName="isPersistent" />
+          <ScalarProperty Name="aboveValue" ColumnName="aboveValue" />
+          <ScalarProperty Name="belowValue" ColumnName="belowValue" />
+          <ScalarProperty Name="savedValue" ColumnName="savedValue" />
+          <ScalarProperty Name="valueType" ColumnName="valueType" />
+          <ScalarProperty Name="marketId" ColumnName="marketId" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

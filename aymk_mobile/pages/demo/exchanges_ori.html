@@ -1,0 +1,251 @@
+<template>
+  <div class="page" data-name="exchanges">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">Exchanges</div>
+        <div class="right">
+          <a href="#" class="link" @click="openActionSheet()">
+            <i class="fa fa-plus-circle"></i>
+            <span class="ios-only">New </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content">
+
+      <div class="block-title">Exchages List </div>
+      <div class="list accordion-list" id="divExchange">
+
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<style>
+  p {
+    margin: 10px 0;
+  }
+</style>
+
+<script>
+
+  var obj = {
+
+
+    actionSheet: null,
+
+    data: function () {
+      return
+      {
+        dummy: null;
+      }
+    },
+    // Component Methods
+    methods: {
+
+      test: (id) => {
+        alert(id);
+      },
+
+      createActionSheet: function () {
+        var btnList = [];
+        var self = this;
+
+
+        console.log(app.data);
+        app.data.catalogues.exchanges.forEach(function (exc) {
+
+          var btn = {
+            text: exc.exchangeName,
+            onClick: function () {
+              selectedExhange = exc;
+              let options =
+                {
+                  context:
+                  {
+                    data:
+                    {
+                      isNew: true,
+                      exchangeMarket: exc
+                    }
+                  }
+                };
+
+              app.router.navigate("/exchangesForm/", options);
+            }
+          };
+
+          btnList.push(btn);
+        });
+
+        var btn = {
+          text: "Cancel",
+          color: "red"
+
+        };
+
+        btnList.push(btn);
+
+        var params =
+          {
+            buttons: btnList
+          };
+
+        obj.actionSheet = app.actions.create(params);
+      },
+      openActionSheet: () => {
+
+        
+        if (obj.actionSheet)
+          obj.actionSheet.open();
+      },
+      getExchangeList: () => {
+
+        console.log(app);
+        const promise = app.methods.aymkReq(config.exchangeService.get + app.data.user.account._id, null, "GET", "Getting your exchange list...");
+
+        promise.then((response) => {
+
+          if (response.isSuccess) {
+
+            this.exchangeList = response.data;
+
+            const exchangeTemplate = $$('script#exchangeTemplate').html();
+            const compiledExchangeTemplate = Template7.compile(exchangeTemplate);
+            const html = compiledExchangeTemplate(response);
+            $$('#divExchange').html(html);
+
+            $$(".crudExchange").on("click", function () {
+
+              let selectedId = $$(this).attr("itemid");
+              let role = $$(this).attr("role")
+
+
+              if (role == "delete")
+                obj.methods.delete(selectedId);
+              else if (role == "disabled")
+                obj.methods.changeStatus(selectedId, false);
+              else if (role == "enabled")
+                obj.methods.changeStatus(selectedId, true);
+              else if (role == "update")
+                obj.methods.update(selectedId);
+            });
+
+          }
+          else {
+            app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+          }
+        }).catch((xhr, textStatus, errorThrown) => {
+          app.dialog.alert("There is unknown error in " + config.exchangeService.name, config.errorCaption);
+        });
+      },
+
+      update: (id) => {
+        let selectedExc;
+        for (let i = 0; i < this.exchangeList.length; i++) {
+          if (this.exchangeList[i]._id === id) {
+            selectedExc = this.exchangeList[i];
+            break;
+          }
+        };
+
+        let options =
+          {
+            context:
+            {
+              data:
+              {
+                isNew: false,
+                exchangeMarket: selectedExc
+              }
+            }
+          };
+
+        app.router.navigate("/exchangesForm/", options);
+
+      },
+
+      delete: (id) => {
+
+        app.dialog.confirm("Are you sure ?", "Delete Exchange", function () {
+
+          const promise = app.methods.aymkReq(config.accountService.delete + id, null, "POST", "Deleting...");
+
+          promise.then((response) => {
+
+            if (response.isSuccess) {
+
+              obj.methods.getExchangeList();
+
+            }
+            else {
+              app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+            }
+          }).catch((xhr, textStatus, errorThrown) => {
+            app.dialog.alert("There is unknown error in " + config.accountService.name, config.errorCaption);
+          });
+        });
+
+      },
+
+      changeStatus: (id, status) => {
+
+        var self = this;
+        var $ = self.$$;
+        var formData = app.form.convertToData('#exchangeForm');
+
+        let requestData = {
+          active: status
+        };
+        const promise = app.methods.aymkReq(config.exchangeService.changeActive + id, requestData, "POST", "Waiting please...");
+
+        promise.then((response) => {
+
+          if (response.isSuccess) {
+            if (requestData.active === true)
+              config.toast("Exchange is enabled");
+            else
+              config.toast("Exchange is disabled");
+
+            obj.methods.getExchangeList();
+          }
+          else {
+            app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+          }
+
+        }).catch((xhr, textStatus, errorThrown) => {
+
+          app.dialog.alert("There is unknown error in " + config.exchangeService.name, config.errorCaption);
+        });
+
+      },
+
+
+    },
+
+    on: {
+
+      pageInit: function (e, page) {
+
+        this.createActionSheet();
+      },
+
+      pageBeforeIn: function (e, page) {
+
+        this.getExchangeList();
+      }
+    }
+  }
+
+
+  return obj;
+
+
+</script>

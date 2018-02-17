@@ -1,0 +1,320 @@
+<template>
+    <div class="page" data-name="exchanges">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Exchanges</div>
+                <div class="right">
+                    <a href="#" class="link" @click="openActionSheet()">
+                        <i class="fa fa-plus-circle"></i>
+                        <span class="ios-only">New </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+
+            <div class="block-title">Exchages List</div>
+            <div class="list accordion-list" id="divExchange">
+
+                <ul>
+                    {{#each $root.user.exchanges}}
+                    <li class="accordion-item">
+                        <a href="#" class="item-content item-link">
+                            {{#if active}}
+                            <div class="item-media">
+                                <i class="fa fa-check-circle" style="color:green"></i>
+                            </div>
+                            {{else}}
+                            <div class="item-media">
+                                <i class="fa fa-times-circle" style="color:gray"></i>
+                            </div>
+                            {{/if}}
+
+                            <div class="item-inner">
+                                <div class="item-title">{{caption}}</div>
+
+                                {{#if active}}
+                                <div class="item-after">Enabled</div>
+                                {{else}}
+                                <div class="item-after">Disabled</div>
+                                {{/if}}
+                            </div>
+                        </a>
+                        <div class="accordion-item-content">
+                            <div class="block" style="padding:18px">
+                                <div class="row">
+                                    <div class="col-25 color-gray">Exchange</div>
+                                    <div class="col-75">{{exchangeName}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25 color-gray">Api Key</div>
+                                    <div class="col-75">{{ apiKey }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25 color-gray">Secret Key</div>
+                                    <div class="col-75">{{ secretKey }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25 color-gray">Trading</div>
+                                    <div class="col-75">
+                                        {{#if tradeEnabled}} Enabled {{else}} Disabled {{/if}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25 color-gray">Active</div>
+                                    <div class="col-75">
+                                        {{#if active}} Enabled {{else}} Disabled {{/if}}
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-33 ">
+                                        <a @click="delete('{{_id}}')" href="#"
+                                           class="col button button-small button-fill   color-red">Delete</a>
+                                    </div>
+                                    <div class="col-33">
+                                        {{#if active}}
+                                        <a @click="changeStatus('{{_id}}',{{active}})" href="#"
+                                           class="col button button-small button-fill  color-gray">Disable </a>
+                                        {{else}}
+                                        <a @click="changeStatus('{{_id}}',{{active}})" href="#"
+                                           class="col button button-small button-fill  color-green">Enable </a>
+                                        {{/if}}
+                                    </div>
+                                    <div class="col-33">
+                                        <a @click="update('{{_id}}')" href="#"
+                                           class="col button button-small button-fill  color-blue">Update </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+
+<script>
+
+    var obj = {
+
+
+        actionSheet: null,
+
+        data: function () {
+            return
+            {
+                dummy: null;
+            }
+        },
+        // Component Methods
+        methods: {
+
+            findById: (id) => {
+
+                var selectedItem;
+
+                for (var i in app.data.user.exchanges) {
+                    if (app.data.user.exchanges[i]._id === id) {
+                        selectedItem = app.data.user.exchanges[i];
+                        break;
+                    }
+                }
+
+                return selectedItem;
+            },
+
+            createActionSheet: function () {
+                var btnList = [];
+                var self = this;
+
+
+                console.log(app.data);
+                app.data.catalogues.exchanges.forEach(function (exc) {
+
+                    var btn = {
+                        text: exc.exchangeName,
+                        onClick: function () {
+                            selectedExhange = exc;
+                            let options =
+                                {
+                                    context:
+                                        {
+                                            data:
+                                                {
+                                                    isNew: true,
+                                                    exchangeMarket: exc
+                                                }
+                                        }
+                                };
+
+                            app.router.navigate("/exchangesForm/", options);
+                        }
+                    };
+
+                    btnList.push(btn);
+                });
+
+                var btn = {
+                    text: "Cancel",
+                    color: "red"
+
+                };
+
+                btnList.push(btn);
+
+                var params =
+                    {
+                        buttons: btnList
+                    };
+
+                obj.actionSheet = app.actions.create(params);
+            },
+            openActionSheet: () => {
+
+
+                if (obj.actionSheet)
+                    obj.actionSheet.open();
+            },
+
+
+            update: (id) => {
+
+                let selectedExc = obj.methods.findById(id);
+
+                let options =
+                    {
+                        context:
+                            {
+                                data:
+                                    {
+                                        isNew: false,
+                                        exchangeMarket: selectedExc
+                                    }
+                            }
+                    };
+
+                app.router.navigate("/exchangesForm/", options);
+
+            },
+
+            delete: (id) => {
+
+                app.dialog.confirm("Are you sure?", "Delete Exchange", function () {
+
+                    let requestData = {
+                        accountId: app.data.user._id,
+                        exchangeId: id
+                    };
+
+                    const promise = app.methods.aymkReq(config.apiMap.exchange.delete, requestData, "POST", "Deleting...");
+
+                    promise.then((response) => {
+
+                        if (response.isSuccess) {
+
+                            config.toast("Exchange deleted");
+
+
+                            app.methods.joinExchanges(response.data);
+                            obj.methods.refreshPage();
+
+                            obj.methods.refreshPage();
+                        }
+                        else {
+                            app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                        }
+                    }).catch((xhr, textStatus, errorThrown) => {
+                        app.dialog.alert("There is unknown error in " + config.apiMap.exchange.comment, config.errorCaption);
+                    });
+                });
+
+            },
+
+            changeStatus: (id, status) => {
+
+
+                let requestData = {
+                    accountId: app.data.user._id,
+                    exchangeId: id,
+                    active: !status
+                };
+                const promise = app.methods.aymkReq(config.apiMap.exchange.changeStatus, requestData, "POST", "Waiting please...");
+
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+
+                        if (requestData.active === true)
+                            config.toast("Exchange is enabled");
+                        else
+                            config.toast("Exchange is disabled");
+
+                        for (var i in app.data.user.exchanges) {
+                            if (app.data.user.exchanges[i]._id === id) {
+                                app.data.user.exchanges[i].active = requestData.active;
+                                break;
+                            }
+                        }
+
+                        obj.methods.refreshPage();
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+
+                }).catch((xhr, textStatus, errorThrown) => {
+
+                    app.dialog.alert("There is unknown error in " + config.apiMap.exchange.comment, config.errorCaption);
+                });
+
+            },
+
+            refreshPage: () => {
+
+                try {
+                    app.router.navigate("/exchanges/", {
+                        reloadCurrent: true,
+                        ignoreCache: true,
+                    });
+                } catch (e) {
+                    config.toast("Page can not refresh. Go back and try again");
+                }
+            }
+
+        },
+
+        on: {
+
+            pageInit: function (e, page) {
+
+                this.createActionSheet();
+            },
+
+            pageBeforeIn: function (e, page) {
+
+
+            }
+        }
+    }
+
+
+    return obj;
+
+
+</script>

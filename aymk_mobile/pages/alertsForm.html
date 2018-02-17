@@ -1,0 +1,416 @@
+<template>
+    <div class="page" data-name="alertsForm">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Set New Alerts</div>
+                {{#unless data.isNew}}
+                <div class="right">
+                    <a href="#" class="link" @click="delete(data.alert._id)">
+                        <i class="fa fa-trash"></i>
+                        <span>Delete</span>
+                    </a>
+                </div>
+                {{/unless}}
+            </div>
+        </div>
+        <div class="page-content">
+
+
+            <div class="list">
+                <form class="list" id="alertForm">
+
+                    <input type="hidden" name="alertId" id="alertId" />
+                    <input type="hidden" name="accountId" value="{{$root.user._id}}" />
+                    <input type="hidden" name="active" value="{{data.alert.active}}" />
+                    <ul>
+                        <li>
+                            <a class="item-link smart-select smart-select-init" data-open-in="popup" data-searchbar="true" data-searchbar-placeholder="Search coin">
+                                <select name="selectedMarket" id="selectedMarket">
+                                    {{#each $root.catalogues.markets}}
+                                    <option  value="{{_id}}" class="popup-close">{{code}} [{{Exchange.exchangeName}}]</option>
+                                    {{/each}}
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Selected Coin</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="valueType item-link smart-select smart-select-init" data-open-in="popover">
+                                <select name="valueType" id="valueType">
+                                    <option value="price" selected>Price</option>
+                                    <option value="percent">Percent</option>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Alert Type</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="isPersistent item-link smart-select smart-select-init" data-open-in="popover">
+                                <select name="isPersistent" id="isPersistent">
+                                    <option value="false" selected>One Time</option>
+                                    <option value="true">Persistent</option>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Frequency</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label text-color-green">Above Value </div>
+                                    <div class="item-input-wrap">
+                                        <input type="number" name="aboveValue" id="aboveValue" placeholder="0.00000000" min="0" max="9999">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label text-color-blue">Current Value </div>
+                                    <div class="item-input-wrap">
+                                        <input type="number" name="savedValue" id="savedValue" placeholder="0.00000000" min="0" max="9999"  disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label text-color-red">Below Value </div>
+                                    <div class="item-input-wrap">
+                                        <input type="number" name="belowValue" id="belowValue" placeholder="0.00000000" min="0" max="9999" width="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Comment</div>
+                                    <div class="item-input-wrap">
+                                        <textarea id="alertComment" name="alertComment" class="resizable" style="font-size:10px" placeholder="[optional] when the alert occurs,... "></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+                </form>
+
+            </div>
+
+            <div class="block block-strong">
+                <p class="row">
+                    <a href="#" class="col button button-fill button-raised color-red" @click="cancel()">Cancel</a>
+                    {{#if data.isNew}}
+                    <a href="#" class="col button button-fill button-raised color-green" @click="save(null)">Save  </a>
+                    {{else}}
+                    {{#if data.alert.active}}
+                    <a href="#" class="col button button-fill button-raised color-gray" @click="changeStatus(data.alert._id,data.alert.active)">Pause  </a>
+                    {{else}}
+                    <a href="#" class="col button button-fill button-raised color-green" @click="changeStatus(data.alert._id,data.alert.active)">Start  </a>
+                    {{/if}}
+
+                    <a href="#" class="col button button-fill button-raised color-blue" @click="save(data.alert._id)">Update  </a>
+                    {{/if}}
+                </p>
+
+            </div>
+
+
+        </div>
+    </div>
+</template>
+
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+
+<script>
+
+    let obj = {
+
+
+        data: function () {
+
+            return
+            {
+                isSelectedMarket:false
+            }
+        },
+        // Component Methods
+        methods: {
+
+            test: (id) => {
+                alert(id);
+            },
+
+            validate: (formData) => {
+
+                //formData.exchangeId = formData.selectedMarket.split("-")[0];
+                formData.marketId = formData.selectedMarket;
+
+                if (formData.belowValue === "" && formData.aboveValue === "") {
+                    app.dialog.alert("Set above or below value", config.errorCaption);
+                    return false;
+                }
+
+                if (formData.belowValue === "")
+                    formData.belowValue = -1;
+
+                if (formData.aboveValue === "")
+                    formData.aboveValue = -1;
+
+
+                if (formData.valueType === "price") {
+                    if (formData.aboveValue !== -1 && formData.aboveValue <= formData.savedValue) {
+                        app.dialog.alert("Above value must be greater then current value", config.errorCaption);
+                        return false;
+                    }
+
+                    if (formData.belowValue !== -1 && formData.belowValue >= formData.savedValue) {
+                        app.dialog.alert("Below value must be less then current value", config.errorCaption);
+                        return false;
+                    }
+                } else if (formData.valueType === "percent") {
+                    if (formData.aboveValue !== -1 && formData.aboveValue <= 0) {
+                        app.dialog.alert("Above percent value must be greater then 0", config.errorCaption);
+                        return false;
+                    }
+
+                    if (formData.belowValue !== -1 && formData.belowValue <= 0) {
+                        app.dialog.alert("Below percent value must be greater then 0", config.errorCaption);
+                        return false;
+                    }
+                }
+                delete formData.selectedMarket;
+                return true;
+            },
+
+            cancel: () => {
+                app.router.back();
+            },
+
+            refresh: () => {
+                app.dialog.alert("the under construction", "AYMK");
+            },
+
+            save: (id) => {
+
+                let self = this;
+                let $ = self.$$;
+                let formData = app.form.convertToData('#alertForm');
+
+                if (obj.methods.validate(formData) === false)
+                    return;
+
+                formData.active = true;
+
+                let requestData = formData;
+
+
+                let promise;
+                if (id == null)
+                    promise = app.methods.aymkReq(config.apiMap.alert.add, requestData, "POST", "Waiting please...");
+                else
+                    promise = app.methods.aymkReq(config.apiMap.alert.update, requestData, "POST", "Waiting please...");
+
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+
+                        app.methods.joinAlerts(response.data);
+
+                        app.router.back(
+                            "/alerts/",
+                            {
+                                force: true,
+                                ignoreCache: true
+
+                            });
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+
+                }).catch((xhr, textStatus, errorThrown) => {
+
+                    app.dialog.alert("There is unknown error in " + config.alertService.name, config.errorCaption);
+                });
+
+
+
+
+            },
+
+            changeStatus: (id, currentActive) => {
+
+                let requestData = {
+                    accountId:app.data.user._id,
+                    alertId:id,
+                    active: !currentActive
+                };
+                const promise = app.methods.aymkReq(config.apiMap.alert.changeStatus, requestData, "POST", "Waiting please...");
+
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+                        if (requestData.active === true)
+                            config.toast("Alert is started");
+                        else
+                            config.toast("Alert is paused");
+
+                        for (var i in app.data.user.alerts) {
+                            if (app.data.user.alerts[i]._id === id) {
+                                app.data.user.alerts[i].active = requestData.active;
+                                break;
+                            }
+                        }
+
+                        app.router.back(
+                            "/alerts/",
+                            {
+                                force: true,
+                                ignoreCache: true 
+
+                            });
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+
+                }).catch((xhr, textStatus, errorThrown) => {
+
+                    app.dialog.alert("There is unknown error in " + config.alertService.name, config.errorCaption);
+                });
+
+            },
+
+            delete: (id) => {
+
+                let requestData = {
+                    accountId:app.data.user._id,
+                    alertId:id
+                };
+                app.dialog.confirm("Are you sure ?", "Delete Alert", function () {
+
+                    const promise = app.methods.aymkReq(config.apiMap.alert.delete, requestData, "POST", "Deleting...");
+
+                    promise.then((response) => {
+
+                        if (response.isSuccess) {
+
+
+                            config.toast("Alert deleted");
+                            app.methods.joinAlerts(response.data);
+                            app.router.back(
+                                "/alerts/",
+                                {
+                                    force: true,
+                                    ignoreCache: true
+
+                                });
+                        }
+                        else {
+                            app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                        }
+                    }).catch((xhr, textStatus, errorThrown) => {
+                        app.dialog.alert("There is unknown error in " + config.apiMap.alert.comment, config.errorCaption);
+                    });
+                });
+
+            },
+        },
+
+        on: {
+
+            pageInit: function (e, page) {
+
+                $$(".smart-select").change(function () {
+                    app.popover.close(".popover");
+                    let marketId =  $$("#selectedMarket").val();
+                    let market = app.methods.getMarketById(marketId);
+                    $$("#savedValue").val(market.ticker.Last);
+                    obj.isSelectedMarket=true;
+                });
+
+                $$("#valueType").change(function () {
+                    if ($$("#valueType").val() === "percent") {
+                        $$("#aboveValue").attr("placeholder", "% 0.0").val("").focus().blur();
+                        $$("#belowValue").attr("placeholder", "% 0.0").val("").focus().blur();
+                    } else {
+                        $$("#aboveValue").attr("placeholder", "0.00000000").val("").focus().blur();
+                        $$("#belowValue").attr("placeholder", "0.00000000").val("").focus().blur();
+                    }
+                });
+
+
+                $$('#aboveValue').on('click  touchend', function (e) {
+                    if(obj.data.isSelectedMarket===false)
+                    {
+                        if ($$("#valueType").val() === "percent") $$('#aboveValue').val(5);
+                        else $$('#aboveValue').val((parseFloat($$('#savedValue').val()) + 0.00000001).toFixed(8));
+                    }
+
+                });
+
+                $$('#belowValue').on('touchend', function (e) {
+                    if(obj.data.isSelectedMarket===false) {
+                        if ($$("#valueType").val() === "percent") $$('#belowValue').val(5);
+                        else $$('#belowValue').val((parseFloat($$('#savedValue').val()).toFixed(8) - 0.00000001).toFixed(8));
+                    }
+                });
+
+
+                if (this.data.isNew === true) {
+                    $$("#selectedMarket").val(null);
+                    obj.data.isSelectedMarket=false;
+                } else {
+                    obj.data.isSelectedMarket=true;
+                    $$("#selectedMarket").val(this.data.alert.marketId);
+                    $$("#valueType").val(this.data.alert.valueType);
+                    $$("#isPersistent").val(this.data.alert.isPersistent);
+                    $$("#aboveValue").val(this.data.alert.aboveValue);
+                    $$("#savedValue").val(this.data.alert.savedValue);
+                    $$("#belowValue").val(this.data.alert.belowValue);
+                    $$("#alertComment").val(this.data.alert.alertComment);
+                    $$("#active").val(this.data.alert.active);
+                    $$("#alertId").val(this.data.alert._id);
+
+                }
+
+            },
+
+            pageBeforeIn: function (e, page) {
+
+
+            }
+        }
+    }
+
+
+    return obj;
+
+
+</script>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B81C6333-1D10-49F4-8BD5-DBC82FFFE2D8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>aymk_database</RootNamespace>
+    <AssemblyName>aymk_database</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\Account.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Alert.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\aymk.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>aymk.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\aymk.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\aymk.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>aymk.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CatalogError.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CatalogExchange.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CatalogMarket.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Exchange.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Log.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Notification.cs">
+      <DependentUpon>aymk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AccountBL.cs" />
+    <Compile Include="Repository\AlertBL.cs" />
+    <Compile Include="Repository\Base\IRepositoryBase.cs" />
+    <Compile Include="Repository\Base\RepositoryBase.cs" />
+    <Compile Include="Repository\GlobalBL.cs" />
+    <Compile Include="Repository\CatalogExchangeBL.cs" />
+    <Compile Include="Repository\CatalogMarketBL.cs" />
+    <Compile Include="Repository\Interface\IAccountBL.cs" />
+    <Compile Include="Repository\Interface\IAlertBL.cs" />
+    <Compile Include="Repository\Interface\ICatalogExchangeBL.cs" />
+    <Compile Include="Repository\Interface\ICatalogMarketBL.cs" />
+    <Compile Include="Repository\Interface\ILogBL.cs" />
+    <Compile Include="Repository\Interface\INotificationBL.cs" />
+    <Compile Include="Repository\LogBL.cs" />
+    <Compile Include="Repository\NotificationBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Database\aymk.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>aymk.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\aymk.edmx.diagram">
+      <DependentUpon>aymk.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\aymk.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>aymk.Context.cs</LastGenOutput>
+      <DependentUpon>aymk.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\aymk.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>aymk.edmx</DependentUpon>
+      <LastGenOutput>aymk.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\aymk_library\aymk_library.csproj">
+      <Project>{3F5EDCCF-5A48-4A1B-B8FA-C5CABBF51B21}</Project>
+      <Name>aymk_library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

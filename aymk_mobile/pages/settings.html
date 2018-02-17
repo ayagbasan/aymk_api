@@ -1,0 +1,223 @@
+<template>
+    <div class="page" data-name="settings">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Settings</div>
+
+                <div class="right">
+                    <a href="#" class="link" @click="save()">
+                        <i class="fa fa-save"></i>
+                        <span>Save</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title">Account Detail</div>
+
+            <form class="list" id="settingsForm">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label text-color-blue">Username</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" name="username" id="username" value="{{$root.user.username}}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label text-color-blue">E-mail</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" name="email" id="email" disabled value="{{$root.user.email}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label text-color-blue">Name</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" name="name" id="name" placeholder="your name" value="{{$root.user.name}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label text-color-blue">Surname</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" name="surname" id="surname" placeholder="your surname" value="{{$root.user.surname}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label text-color-blue">Phone Number</div>
+                                <div class="item-input-wrap">
+                                    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="your phone number" value="{{$root.user.phoneNumbee}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="item-link smart-select smart-select-init" data-open-in="popover">
+                            <select name="alertNotify" multiple>
+                                <option value="notification" {{#if $root.user.alertNotification}} selected  {{/if}} >Notification</option>
+                                <option value="email" {{#if $root.user.alertEmail}} selected  {{/if}} >E-mail</option>
+                                <option value="sms" {{#if $root.user.alertSms}} selected  {{/if}} >SMS</option>
+                            </select>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Alert</div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="item-link smart-select smart-select-init" data-open-in="popover">
+                            <select name="tradeNotify" multiple>
+                                <option value="notification" {{#if $root.user.tradeNotification}} selected {{/if}}>Notification</option>
+                                <option value="email" {{#if $root.user.tradeEmail}} selected {{/if}}>E-mail</option>
+                                <option value="sms" {{#if $root.user.tradeSms}} selected {{/if}}>SMS</option>
+                            </select>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">Trading</div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+                <input id="active" type="hidden" name="active" value="{{$root.user.active}}" />
+
+            </form>
+
+            <div class="block block-strong">
+                <p class="row">
+                    <a href="#" class="col button button-fill button-raised color-red" @click="disableAccount()">Disable Account</a>
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+</template>
+
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+
+<script>
+
+    let obj = {
+
+
+        data: function () {
+
+
+        },
+        // Component Methods
+        methods: {
+
+            save: () => {
+
+                let self = this;
+                let $ = self.$$;
+                let formData = app.form.convertToData('#settingsForm');
+
+               
+
+                var requestData = {
+                    userId: app.data.user._id,
+                    active: formData.active,
+
+                    tradeSms: formData.tradeNotify.indexOf("sms") === -1 ? false : true,
+                    tradeNotification: formData.tradeNotify.indexOf("notification") === -1 ? false : true,
+                    tradeEmail: formData.tradeNotify.indexOf("email") === -1 ? false : true,
+
+                    alertSms: formData.alertNotify.indexOf("sms") === -1 ? false : true,
+                    alertNotification: formData.alertNotify.indexOf("notification") === -1 ? false : true,
+                    alertEmail: formData.alertNotify.indexOf("email") === -1 ? false : true,
+
+                    phoneNumber: formData.phoneNumber,
+                    surname: formData.surname,
+                    name: formData.name,
+                };
+
+                
+
+
+                let promise = app.methods.aymkReq(config.apiMap.user.update, requestData, "POST", "Waiting please...");
+
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+                         
+
+                        app.data.user = response.data;
+                        localStorage.setItem("account", JSON.stringify(app.data.user));
+
+                        app.router.back(
+                            "/",
+                            {
+                                force: true,
+                                ignoreCache: true
+
+                            });
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+
+                }).catch((xhr, textStatus, errorThrown) => {
+
+                    app.dialog.alert("There is unknown error in " + config.apiMap.user.comment, config.errorCaption);
+                });
+
+
+
+
+            },
+
+            disableAccount: ()=>{
+                $$("#active").val(false);
+                obj.methods.save();
+            }
+
+        },
+
+        on: {
+
+            pageInit: function (e, page) {
+
+
+            },
+
+            pageBeforeIn: function (e, page) {
+
+
+            }
+        }
+    };
+
+    return obj;
+
+
+</script>

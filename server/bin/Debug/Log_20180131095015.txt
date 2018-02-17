@@ -1,0 +1,299 @@
+09:49:11 Market data ERROR : The operation has timed out
+09:49:11 Market data ERROR : The operation has timed out
+09:49:11 Market data ERROR : The operation has timed out
+09:49:11 Market data ERROR : The operation has timed out
+09:49:11 Market data ERROR : The operation has timed out
+09:49:11 Market data ERROR : The operation has timed out
+09:49:12 Market data ERROR : The operation has timed out
+09:49:12 Market data ERROR : The operation has timed out
+09:49:12 Market data ERROR : The operation has timed out
+09:49:12 Market data ERROR : The operation has timed out
+09:49:12 Market data ERROR : The operation has timed out
+09:49:12 Market data ERROR : The operation has timed out
+09:49:12 Market data ERROR : The operation has timed out
+09:49:13 Market data ERROR : The operation has timed out
+09:49:13 Market data ERROR : The operation has timed out
+09:49:15 Market data ERROR : The operation has timed out
+09:49:15 Market data ERROR : The operation has timed out
+09:49:18 Market data ERROR : The operation has timed out
+09:49:18 Market data ERROR : The operation has timed out
+09:49:18 Market data ERROR : The operation has timed out
+09:49:18 Market data ERROR : The operation has timed out
+09:49:18 Market data ERROR : The operation has timed out
+09:49:18 Market data ERROR : The operation has timed out
+09:49:19 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:20 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:21 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:22 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:23 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+009:49:24 Market data ERROR : The operation has timed out
+9:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:24 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:25 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:26 Market data ERROR : The operation has timed out
+09:49:27 Market data ERROR : The operation has timed out
+09:49:30 Market data ERROR : The operation has timed out
+09:49:30 Market data ERROR : The operation has timed out
+09:49:30 Market data ERROR : The operation has timed out
+09:49:30 Market data ERROR : The operation has timed out
+09:49:30 Market data ERROR : The operation has timed out
+09:49:30 Market data ERROR : The operation has timed out
+09:49:30 Market data ERROR : The operation has timed out
+09:49:31 Market data ERROR : The operation has timed out
+09:49:31 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:32 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data ERROR : The operation has timed out
+09:49:33 Market data OK. BTC-STRAT
+09:49:33 Market data OK. Duration: 53,03 Thread Name: thread_114
+09:49:33 Market data OK. BTC-SEQ
+09:49:33 Market data OK. Duration: 53,06 Thread Name: thread_119
+09:49:34 Market data OK. BTC-XZC
+09:49:34 Market data OK. Duration: 53,23 Thread Name: thread_123
+09:49:34 Market data ERROR : The operation has timed out
+09:49:34 Market data ERROR : The operation has timed out
+09:49:35 Market data OK. BTC-SWT
+09:49:35 Market data OK. Duration: 54,08 Thread Name: thread_137
+09:49:35 Market data OK. BTC-MCO
+09:49:35 Market data OK. Duration: 54,01 Thread Name: thread_194
+09:49:37 Market data OK. BTC-BYC
+09:49:37 Market data OK. Duration: 57,03 Thread Name: thread_48
+09:49:37 Market data OK. BTC-XCP
+09:49:37 Market data OK. Duration: 57,25 Thread Name: thread_59
+09:49:37 Market data OK. BTC-FUN
+09:49:37 Market data OK. Duration: 55,94 Thread Name: thread_198
+09:49:37 Market data OK. BTC-GNT
+09:49:37 Market data OK. Duration: 56,41 Thread Name: thread_146
+09:49:37 Market data ERROR : The operation has timed out
+09:49:37 Market data OK. BTC-BRK
+09:49:37 Market data OK. Duration: 56,75 Thread Name: thread_106
+09:49:37 Market data OK. BTC-XMY
+09:49:37 Market data OK. Duration: 57,69 Thread Name: thread_11
+09:49:39 Market data OK. BTC-SLR
+09:49:39 Market data OK. Duration: 59,08 Thread Name: thread_15
+09:49:39 Market data OK. BTC-XMG
+09:49:39 Market data OK. Duration: 59,11 Thread Name: thread_49
+09:49:39 Market data OK. BTC-BRX
+09:49:39 Market data OK. Duration: 58,42 Thread Name: thread_111
+09:49:39 Market data OK. BTC-EMC2
+09:49:39 Market data OK. Duration: 59,32 Thread Name: thread_10
+09:49:39 Market data OK. BTC-PPC
+09:49:39 Market data OK. Duration: 59,50 Thread Name: thread_3
+09:49:39 Market data OK. BTC-RDD
+09:49:39 Market data OK. Duration: 59,55 Thread Name: thread_5
+09:49:39 Market data OK. BTC-ERC
+09:49:39 Market data OK. Duration: 59,76 Thread Name: thread_24
+09:49:39 Market data ERROR : The operation has timed out
+09:49:39 Market data OK. BTC-ENRG
+09:49:39 Market data OK. Duration: 59,97 Thread Name: thread_23
+09:49:40 Market data OK. BTC-LSK
+09:49:40 Market data OK. Duration: 59,37 Thread Name: thread_104
+09:49:40 Market data OK. BTC-XWC
+09:49:40 Market data OK. Duration: 60,17 Thread Name: thread_20
+09:49:40 Market data OK. BTC-2GIVE
+09:49:40 Market data OK. Duration: 59,63 Thread Name: thread_103
+09:49:40 Market data OK. BTC-PDC
+09:49:40 Market data OK. Duration: 59,84 Thread Name: thread_105
+09:49:40 Market data OK. BTC-UNB
+09:49:40 Market data OK. Duration: 59,90 Thread Name: thread_115
+09:49:41 Market data OK. BTC-VRM
+09:49:41 Market data OK. Duration: 60,20 Thread Name: thread_118
+09:49:41 Market data ERROR : The operation has timed out
+09:49:41 Market data OK. BTC-RBY
+09:49:41 Market data OK. Duration: 61,48 Thread Name: thread_19
+09:49:42 Market data OK. BTC-PTC
+09:49:42 Market data OK. Duration: 62,11 Thread Name: thread_16
+09:49:42 Market data OK. BTC-LTC
+09:49:42 Market data OK. Duration: 62,33 Thread Name: thread_0
+09:49:42 Market data OK. BTC-PART
+09:49:42 Market data OK. Duration: 61,06 Thread Name: thread_217
+09:49:42 Market data ERROR : The operation has timed out
+09:49:42 Market data OK. ETH-QTUM
+09:49:42 Market data OK. Duration: 61,26 Thread Name: thread_219
+09:49:42 Market data ERROR : The operation has timed out
+09:49:42 Market data OK. ETH-ZEC
+09:49:42 Market data OK. Duration: 61,57 Thread Name: thread_208
+09:49:43 Market data ERROR : The operation has timed out
+09:49:43 Market data OK. BTC-ADX
+09:49:43 Market data OK. Duration: 61,81 Thread Name: thread_204
+09:49:43 Market data OK. ETH-DASH
+09:49:43 Market data OK. Duration: 62,01 Thread Name: thread_206
+09:49:43 Market data ERROR : The operation has timed out
+09:49:43 Market data OK. BTC-TKS
+09:49:43 Market data OK. Duration: 62,57 Thread Name: thread_141
+09:49:43 Market data OK. ETH-ADT
+09:49:43 Market data OK. Duration: 62,49 Thread Name: thread_197
+09:49:43 Market data ERROR : The operation has timed out
+09:49:44 Market data OK. BTC-DYN
+09:49:44 Market data OK. Duration: 63,00 Thread Name: thread_140
+09:49:44 Market data OK. BTC-NBT
+09:49:44 Market data OK. Duration: 64,04 Thread Name: thread_65
+09:49:44 Market data ERROR : The operation has timed out
+09:49:44 Market data OK. BTC-LBC
+09:49:44 Market data OK. Duration: 63,52 Thread Name: thread_109
+09:49:44 Market data OK. ETH-XRP
+09:49:44 Market data OK. Duration: 63,27 Thread Name: thread_189
+09:49:44 Market data OK. BTC-XEM
+09:49:44 Market data OK. Duration: 64,59 Thread Name: thread_67
+09:49:44 Market data ERROR : The operation has timed out
+09:49:44 Market data OK. BTC-VTR
+09:49:44 Market data OK. Duration: 64,80 Thread Name: thread_54
+09:49:44 Market data OK. BTC-RISE
+09:49:44 Market data OK. Duration: 63,97 Thread Name: thread_108
+09:49:44 Market data OK. BTC-BURST
+09:49:44 Market data OK. Duration: 65,01 Thread Name: thread_42
+09:49:45 Market data OK. ETH-GNT
+09:49:45 Market data ERROR : The operation has timed out
+09:49:45 Market data OK. USDT-BCC
+09:49:45 Market data OK. Duration: 63,70 Thread Name: thread_227
+09:49:45 Market data OK. BTC-ARDR
+09:49:45 Market data OK. Duration: 64,32 Thread Name: thread_122
+09:49:45 Market data ERROR : The operation has timed out
+09:49:45 Market data OK. BTC-CVC
+09:49:45 Market data OK. Duration: 63,98 Thread Name: thread_215
+09:49:45 Market data OK. BTC-ADT
+09:49:45 Market data OK. Duration: 64,11 Thread Name: thread_196
+09:49:45 Market data OK. BTC-DCT
+09:49:45 Market data OK. Duration: 64,32 Thread Name: thread_192
+09:49:46 Market data OK. BTC-NXC
+09:49:46 Market data OK. Duration: 65,29 Thread Name: thread_147
+09:49:46 Market data OK. BTC-QTUM
+09:49:46 Market data OK. Duration: 65,02 Thread Name: thread_218
+09:49:46 Market data OK. BTC-NMR
+09:49:46 Market data OK. Duration: 65,41 Thread Name: thread_186
+09:49:46 Market data OK. ETH-OMG
+09:49:46 Market data OK. Duration: 65,29 Thread Name: thread_214
+09:49:46 Market data OK. ETH-NEO
+09:49:46 Market data OK. Duration: 65,41 Thread Name: thread_223
+09:49:46 Market data OK. BTC-OMG
+09:49:46 Market data OK. Duration: 65,51 Thread Name: thread_213
+09:49:47 Market data OK. BTC-QRL
+09:49:47 Market data OK. Duration: 65,89 Thread Name: thread_174
+09:49:47 Market data OK. ETH-BNT
+09:49:47 Market data OK. Duration: 65,88 Thread Name: thread_185
+09:49:47 Market data OK. USDT-LTC
+09:49:47 Market data OK. Duration: 65,90 Thread Name: thread_210
+09:49:47 Market data OK. ETH-DNT
+09:49:47 Market data OK. Duration: 65,84 Thread Name: thread_230
+09:49:47 Market data OK. ETH-DGB
+09:49:47 Market data OK. Duration: 65,96 Thread Name: thread_234
+09:49:47 Market data OK. BTC-TIX
+09:49:47 Market data OK. Duration: 66,16 Thread Name: thread_242
+09:49:48 Market data OK. USDT-ZEC
+09:49:48 Market data OK. Duration: 66,61 Thread Name: thread_209
+09:49:48 Market data OK. ETH-ADX
+09:49:48 Market data OK. Duration: 67,00 Thread Name: thread_205
+09:49:48 Market data OK. BTC-XEL
+09:49:48 Market data OK. Duration: 67,28 Thread Name: thread_193
+09:49:48 Market data OK. ETH-CRB
+09:49:48 Market data OK. Duration: 67,40 Thread Name: thread_178
+09:49:48 Market data OK. ETH-BCC
+09:49:48 Market data OK. Duration: 67,33 Thread Name: thread_226
+09:49:48 Market data OK. ETH-PAY
+09:49:48 Market data OK. Duration: 67,50 Thread Name: thread_201
+09:49:49 Market data OK. BTC-GNO
+09:49:49 Market data OK. Duration: 67,93 Thread Name: thread_157
+09:49:49 Market data OK. BTC-SNT
+09:49:49 Market data OK. Duration: 67,77 Thread Name: thread_190
+09:49:49 Market data OK. ETH-RCN
+09:49:49 Market data OK. Duration: 68,16 Thread Name: thread_245
+09:49:49 Market data OK. BTC-MUSIC
+09:49:49 Market data OK. Duration: 68,83 Thread Name: thread_142
+09:49:49 Market data OK. BTC-RCN
+09:49:49 Market data OK. Duration: 68,32 Thread Name: thread_244
+09:49:50 Market data OK. USDT-XVG
+09:49:50 Market data OK. Duration: 69,19 Thread Name: thread_258
+09:49:51 Market data OK. ETH-ADA
+09:49:51 Market data OK. Duration: 69,50 Thread Name: thread_254
+09:49:51 Market data OK. ETH-VIB
+09:49:51 Market data OK. Duration: 69,94 Thread Name: thread_247
+09:49:51 Market data OK. ETH-ENG
+09:49:51 Market data OK. Duration: 70,03 Thread Name: thread_256
+09:49:51 Market data OK. BTC-POWR
+09:49:51 Market data OK. Duration: 70,25 Thread Name: thread_249
+09:49:54 Market data ERROR : The operation has timed out
+09:49:54 Market data OK. BTC-DTB
+09:49:54 Market data OK. Duration: 73,25 Thread Name: thread_143
+09:49:54 Market data OK. BTC-VIB
+09:49:54 Market data OK. Duration: 72,75 Thread Name: thread_246
+09:49:54 Market data OK. ETH-XEM
+09:49:54 Market data OK. Duration: 73,25 Thread Name: thread_221
+09:49:54 Market data OK. BTC-MANA
+09:49:54 Market data OK. Duration: 73,31 Thread Name: thread_238
+09:49:55 Market data OK. ETH-PTOY
+09:49:55 Market data OK. Duration: 73,91 Thread Name: thread_181
+09:49:56 Market data OK. ETH-XLM
+09:49:56 Market data OK. Duration: 75,40 Thread Name: thread_222

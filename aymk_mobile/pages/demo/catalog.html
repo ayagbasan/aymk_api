@@ -1,0 +1,48 @@
+<template>
+  <div class="page" data-name="catalog">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="title">Catalog</div>
+      </div>
+    </div>
+    <div class="page-content">
+        <div class="block block-strong">
+            <a href="#" class="button button-raised" @click="openAlert()">Open Alert</a>
+          </div>
+      <div id="data" class="list links-list">
+        
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  return {
+    data: function () {
+      return {
+        products: this.$root.products,
+      };
+    }, methods: {
+      openAlert: function () {
+        var self = this;
+
+        self.products.push(
+          {
+            id: '4',
+            title: 'Ahmet',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
+          });
+
+        self.products.push(
+          {
+            id: '5',
+            title: 'Mehmet',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
+          });
+
+          console.log(JSON.stringify(self.products));
+          $$('#data').html(Template7.templates.itemsTemplate(self.products));
+      },
+    },
+  };
+</script>

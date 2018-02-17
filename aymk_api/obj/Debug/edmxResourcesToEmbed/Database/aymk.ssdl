@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AYMKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar(max)" />
+    <Property Name="name" Type="nvarchar(max)" />
+    <Property Name="surname" Type="nvarchar(max)" />
+    <Property Name="email" Type="nvarchar(max)" />
+    <Property Name="password" Type="nvarchar(max)" />
+    <Property Name="phoneNumber" Type="nvarchar(max)" />
+    <Property Name="alertEmail" Type="bit" />
+    <Property Name="alertNotification" Type="bit" />
+    <Property Name="alertSms" Type="bit" />
+    <Property Name="tradeEmail" Type="bit" />
+    <Property Name="tradeNotification" Type="bit" />
+    <Property Name="tradeSms" Type="bit" />
+    <Property Name="lastLogin" Type="datetime2" Precision="7" />
+    <Property Name="createdAt" Type="datetime2" Precision="7" />
+    <Property Name="deviceModel" Type="nvarchar(max)" />
+    <Property Name="deviceType" Type="nvarchar(max)" />
+    <Property Name="devicePrivateKey" Type="nvarchar(max)" />
+    <Property Name="devicePublicKey" Type="nvarchar(max)" />
+    <Property Name="devicePlayerId" Type="nvarchar(max)" />
+    <Property Name="active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Alert">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountId" Type="int" Nullable="false" />
+    <Property Name="marketId" Type="int" Nullable="false" />
+    <Property Name="valueType" Type="int" Nullable="false" />
+    <Property Name="savedValue" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="belowValue" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="aboveValue" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="isPersistent" Type="bit" Nullable="false" />
+    <Property Name="alertComment" Type="nvarchar(max)" />
+    <Property Name="createdAt" Type="datetime2" Precision="7" />
+    <Property Name="updateAt" Type="datetime2" Precision="7" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CatalogError">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="controller" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="errorTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="errorContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="errorType" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CatalogExchange">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="marketSplitterChar" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="webSiteUrl" Type="nvarchar(max)" />
+    <Property Name="createdAt" Type="datetime2" Precision="7" />
+    <Property Name="active" Type="bit" />
+  </EntityType>
+  <EntityType Name="CatalogMarket">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="exchangeId" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="firstCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="secondCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="logoUrl" Type="nvarchar(max)" />
+    <Property Name="createdAt" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="lastSell" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="lastBuy" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="volume" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="sellMin5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="sellMax5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="buyMin5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="buyMax5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="volume5" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="updatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AYMK.dbo.Exchange' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Exchange">
+    <Key>
+      <PropertyRef Name="accountId" />
+      <PropertyRef Name="exchangeId" />
+    </Key>
+    <Property Name="accountId" Type="int" Nullable="false" />
+    <Property Name="exchangeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountId" Type="int" Nullable="false" />
+    <Property Name="logType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="logContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="logDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountId" Type="int" />
+    <Property Name="notificationType" Type="nvarchar(max)" />
+    <Property Name="notificationTitle" Type="nvarchar(max)" />
+    <Property Name="notificationContent" Type="nvarchar(max)" />
+    <Property Name="notificationDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <Association Name="FK_Alert_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Alert" Type="Self.Alert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Alert">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Alert_CatalogMarket">
+    <End Role="CatalogMarket" Type="Self.CatalogMarket" Multiplicity="1" />
+    <End Role="Alert" Type="Self.Alert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CatalogMarket">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Alert">
+        <PropertyRef Name="marketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CatalogMarket_CatalogMarket">
+    <End Role="CatalogExchange" Type="Self.CatalogExchange" Multiplicity="1" />
+    <End Role="CatalogMarket" Type="Self.CatalogMarket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CatalogExchange">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CatalogMarket">
+        <PropertyRef Name="exchangeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exchange_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exchange">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exchange_CatalogExchange">
+    <End Role="CatalogExchange" Type="Self.CatalogExchange" Multiplicity="1" />
+    <End Role="Exchange" Type="Self.Exchange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CatalogExchange">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Exchange">
+        <PropertyRef Name="exchangeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Log_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Log" Type="Self.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AYMKModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Alert" EntityType="Self.Alert" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CatalogError" EntityType="Self.CatalogError" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CatalogExchange" EntityType="Self.CatalogExchange" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CatalogMarket" EntityType="Self.CatalogMarket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exchange" EntityType="Self.Exchange" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Exchange].[accountId] AS [accountId], 
+    [Exchange].[exchangeId] AS [exchangeId]
+    FROM [dbo].[Exchange] AS [Exchange]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Alert_Account" Association="Self.FK_Alert_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Alert" EntitySet="Alert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Alert_CatalogMarket" Association="Self.FK_Alert_CatalogMarket">
+      <End Role="CatalogMarket" EntitySet="CatalogMarket" />
+      <End Role="Alert" EntitySet="Alert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CatalogMarket_CatalogMarket" Association="Self.FK_CatalogMarket_CatalogMarket">
+      <End Role="CatalogExchange" EntitySet="CatalogExchange" />
+      <End Role="CatalogMarket" EntitySet="CatalogMarket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exchange_Account" Association="Self.FK_Exchange_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Exchange" EntitySet="Exchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exchange_CatalogExchange" Association="Self.FK_Exchange_CatalogExchange">
+      <End Role="CatalogExchange" EntitySet="CatalogExchange" />
+      <End Role="Exchange" EntitySet="Exchange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Log_Account" Association="Self.FK_Log_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Account" Association="Self.FK_Notification_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Notification" EntitySet="Notification" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

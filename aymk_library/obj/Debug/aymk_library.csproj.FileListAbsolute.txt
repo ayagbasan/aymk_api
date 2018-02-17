@@ -1,0 +1,7 @@
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_library\bin\Debug\aymk_library.exe.config
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_library\bin\Debug\aymk_library.exe
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_library\bin\Debug\aymk_library.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_library\obj\Debug\aymk_library.csproj.CoreCompileInputs.cache
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_library\obj\Debug\aymk_library.exe
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_library\obj\Debug\aymk_library.pdb
+C:\OneDrive\99-Diğer\aymkCoin\server\aymkCoin\aymk_library\obj\Debug\aymk_library.csprojResolveAssemblyReference.cache

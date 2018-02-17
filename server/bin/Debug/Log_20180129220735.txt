@@ -1,0 +1,11 @@
+
+22:06:54 OK. Duration: 6,39
+22:06:55 OK. Duration: 0,23
+22:06:58 OK. Duration: 0,21
+22:07:03 OK. Duration: 0,22
+22:07:08 OK. Duration: 0,22
+22:07:13 OK. Duration: 0,22
+22:07:18 OK. Duration: 0,22
+22:07:23 OK. Duration: 0,22
+22:07:28 OK. Duration: 0,21
+22:07:33 OK. Duration: 0,21

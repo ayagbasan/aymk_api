@@ -1,0 +1,4 @@
+23:04:49 Market data service starting
+23:04:51 Market data OK. Duration: 1,43
+23:04:55 Market data OK. Duration: 0,32
+23:04:55 Market data service stopped

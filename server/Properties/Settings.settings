@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="aymk_engine.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Mail_Address" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ahmetyagibasan@gmail.com</Value>
+    </Setting>
+    <Setting Name="Mail_Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AsyaZeynep*2*5</Value>
+    </Setting>
+    <Setting Name="Mail_Server" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="Mail_Port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="DB_Server" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mongodb://localhost:27017</Value>
+    </Setting>
+    <Setting Name="DB_DatabaseName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aymkCoin</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

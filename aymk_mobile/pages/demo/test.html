@@ -1,0 +1,176 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">My Exchanges</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block block-strong">
+        <p>Component page is alos compiled with Template7, but it has much more functionality. In addition to Template7
+          page
+          it has lifecycle hooks, events handling and data managment.</p>
+        <p>It is useful to use Component page when you need page-specific logic.</p>
+      </div>
+      <div class="block-title">Events Handling</div>
+      <div class="block block-strong">
+        <a href="#" class="button button-raised" @click="openAlert(1)">Open Alert</a>
+      </div>
+      <div class="block block-strong">
+        <a href="#" class="button button-raised" @click="getMyExchanges()">Get Data</a>
+      </div>
+      <div class="block-title">Page Component Data</div>
+      <div class="block block-strong">
+        <p>Hello! My name is {{name}}. I am {{age}} years old.</p>
+        <p>I like to play:</p>
+        <ul id="liste">
+
+        </ul>
+      </div>
+      <div class="block-title">Extended Context</div>
+      <div class="block block-strong">
+        <p>Component page context as Template7 page context is also extended with some additional variables.</p>
+        <h4>$route</h4>
+        <p>Contains properties of the current route:</p>
+        <ul style="padding-left:25px">
+          <li>
+            <b>$route.url</b>: {{$route.url}}
+          </li>
+          <li>
+            <b>$route.path</b>: {{$route.path}}
+          </li>
+          <li>
+            <b>$route.params</b>: {{js 'return JSON.stringify(this.$route.params)'}}
+          </li>
+          <li>
+            <b>$route.hash</b>: {{$route.hash}}
+          </li>
+          <li>
+            <b>$route.query</b>: {{js 'return JSON.stringify(this.$route.query)'}}
+          </li>
+        </ul>
+
+        <h4>$root</h4>
+        <p>Root data & methods:</p>
+        
+
+        <h4>$theme</h4>
+        <p>Currently active theme:</p>
+        <ul style="padding-left:25px">
+          <li>
+            <b>$theme.ios</b>: {{$theme.ios}}
+          </li>
+          <li>
+            <b>$theme.md</b>: {{$theme.md}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<style>
+  p {
+    margin: 10px 0;
+  }
+</style>
+
+<script>
+
+  return {
+
+
+    // Component Data
+    data: function () {
+      var hesaplar = [];
+
+      return {
+        hesaplar: hesaplar
+      };
+    },
+    // Component Methods
+    methods: {
+      openAlert: function (id) {
+        var self = this;
+        self.$app.dialog.alert(id + 'Hello World');
+      },
+      
+      getMyExchanges: function () {
+        var self = this;
+        var $ = self.$$;
+        let id = this.$route.params.exchangeId;
+
+
+        self.$app.preloader.show();
+        self.$app.request({
+          url: "http://localhost:3000/api/exchange/getAll",
+          method: 'GET',
+          dataType: 'json',
+          crossDomain: false,
+          data: {},
+          success: function (data, textStatus) {
+
+            // We have received response and can hide activity indicator
+            self.$app.preloader.hide();
+
+            console.log(data);
+            this.data.hesaplar = data;
+            var html = compiledTemplate(this.data.hesaplar);
+            console.log(JSON.stringify(this.data.hesaplar));
+
+            $(self.$el).find('#liste').html(html);
+            var data = {
+              people: [
+                {
+                  firstName: 'John',
+                  lastName: 'Doe'
+                },
+                {
+                  firstName: 'Mark',
+                  lastName: 'Johnson'
+                },
+              ]
+            }
+
+            //var html = compiledTemplate(data.people);
+            console.log(data);
+            console.log(html);
+
+           // $(self.$el).find('#liste').html(html);
+
+            return;
+
+          },
+          error: function (xhr, textStatus, errorThrown) {
+
+            // We have received response and can hide activity indicator
+            self.$app.preloader.hide();
+
+            console.log('Fail');
+            console.log(xhr.response);
+            //alert(JSON.stringify(xhr.response));
+            return;
+
+          }
+        });
+
+
+      }
+    },
+
+    on: {
+
+      pageInit: function (e, page) {
+
+       
+
+      }
+
+    }
+  }
+</script>

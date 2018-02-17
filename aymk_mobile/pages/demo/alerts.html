@@ -1,0 +1,223 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Alerts</div>
+                <div class="right">
+                    <a href="#" @click="addNewAlert()" class="link">
+                        <i class="fa fa-plus-circle"></i>
+                        <span class="ios-only">New </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+
+            <div class="block-title ">Alerts List </div>
+
+
+            <div class="list media-list" id="divAlerts">
+
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+
+<script>
+
+    var obj = {
+
+        data: function () {
+            return
+            {
+                dummy: null;
+                alertList: []
+            }
+        },
+        // Component Methods
+        methods: {
+
+            test: (id) => {
+                alert(id);
+            },
+
+            addNewAlert: () => {
+                let options =
+                    {
+                        context:
+                        {
+                            data:
+                            {
+                                isNew: true,
+                                alert:
+                                {
+                                    alrm_active: false,
+                                    alrm_id: 0
+                                }
+                            }
+                        }
+                    };
+
+                app.router.navigate("/alertsForm/", options);
+            },
+
+            onDeleted: (alrm_id) => {
+                alert(alrm_id);
+            },
+
+            getAlertList: () => {
+
+                console.log(app);
+                const promise = app.methods.aymkReq(config.alertService.get + app.data.user.account._id, null, "GET", "Getting your alert list...");
+
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+
+                        obj.data.alertList = response.data;
+
+                        const alertTemplate = $$('script#alertTemplate').html();
+                        const compiledAlertTemplate = Template7.compile(alertTemplate);
+                        const html = compiledAlertTemplate(response);
+                        $$('#divAlerts').html(html);
+
+
+                        $$(".crudAlerts").on("click", function () {
+
+
+                            let selectedId = $$(this).attr("itemid");
+                            let role = $$(this).attr("role")
+                            let selectedAlert;
+
+                            for (var i in obj.data.alertList) {
+                                if (obj.data.alertList[i].alrm_id === selectedId) {
+                                    selectedAlert = obj.data.alertList[i];
+                                    break;
+                                }
+                            }
+
+
+
+                            if (role == "pause")
+                                obj.methods.pause(selectedId, selectedAlert.alrm_active);
+                            else if (role == "detail")
+                                obj.methods.detail(selectedAlert);
+                            else if (role == "delete")
+                                obj.methods.delete(selectedId);
+                        });
+
+
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+                }).catch((xhr, textStatus, errorThrown) => {
+                    app.dialog.alert("There is unknown error in " + config.alertService.name, config.errorCaption);
+                });
+            },
+
+            delete: (id) => {
+
+                app.dialog.confirm("Are you sure ?", "Delete Alert", function () {
+
+                    const promise = app.methods.aymkReq(config.alertService.delete + id, null, "POST", "Deleting...");
+
+                    promise.then((response) => {
+
+                        if (response.isSuccess) {
+                            obj.methods.getAlertList();
+                            config.toast("Alert deleted");
+
+                        }
+                        else {
+                            app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                        }
+                    }).catch((xhr, textStatus, errorThrown) => {
+                        app.dialog.alert("There is unknown error in " + config.alertService.name, config.errorCaption);
+                    });
+                });
+
+            },
+
+            pause: (id, currentActive) => {
+
+                let requestData = {
+                    active: !currentActive
+                };
+                const promise = app.methods.aymkReq(config.alertService.changeActive + id, requestData, "POST", "Waiting please...");
+
+                promise.then((response) => {
+
+                    if (response.isSuccess) {
+                        if (requestData.active === true)
+                            config.toast("Alert is started");
+                        else
+                            config.toast("Alert is paused");
+
+                        obj.methods.getAlertList();
+                    }
+                    else {
+                        app.dialog.alert(response.errorMessage + " " + response.errorDetail, config.errorCaption);
+                    }
+
+                }).catch((xhr, textStatus, errorThrown) => {
+
+                    app.dialog.alert("There is unknown error in " + config.alertService.name, config.errorCaption);
+                });
+
+            },
+
+            detail: (selectedItem) => {
+
+
+                let options =
+                    {
+                        context:
+                        {
+                            data:
+                            {
+                                isNew: false,
+                                alert: selectedItem
+                            }
+                        }
+                    };
+
+                console.log(selectedItem);
+                app.router.navigate("/alertsForm/", options);
+
+
+            },
+
+        },
+
+        on: {
+
+            pageInit: function (e, page) {
+
+            },
+
+            pageBeforeIn: function (e, page) {
+
+                this.getAlertList();
+            }
+        }
+    }
+
+
+    return obj;
+
+
+</script>
